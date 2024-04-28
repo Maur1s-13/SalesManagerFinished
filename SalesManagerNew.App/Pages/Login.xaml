@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalesManagerNew.App.Pages.Login"
+             Title="Login"
+             xmlns:viewmodels="clr-namespace:SalesManagerNew.Core.ViewModels;assembly=SalesManagerNew.Core"
+             x:DataType="viewmodels:LoginViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:model="clr-namespace:SalesManagerNew.Lib.Models;assembly=SalesManagerNew.Lib"
+             >
+
+    <ContentPage.Behaviors>
+
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                Command="{Binding LoadCommand}" />
+
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsNullConverter x:Key="IsNullConverter"/>
+            <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+    <Grid Padding="10" Grid.Row="2" ColumnSpacing="10" RowSpacing="20" 
+    ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *">
+
+        <Grid  ColumnDefinitions="Auto, *" RowDefinitions="Auto, *"   IsVisible="{Binding Schluessel, Converter={StaticResource IsNullConverter}}">
+
+            <VerticalStackLayout Grid.Column="0" Grid.Row="0">
+
+                <Entry IsPassword="True" Text="{Binding Entrypassword}" Placeholder="Enter Password"/>
+                
+
+            </VerticalStackLayout>
+
+            <StackLayout Grid.Row="1">
+                <Button Text="Passwort bestätigen" Command="{Binding SetValueCommand}" />
+            </StackLayout>
+
+            
+
+        </Grid>
+
+        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.ColumnSpan="2" IsVisible="{Binding Schluessel, Converter={StaticResource IsNotNullConverter}}">
+
+                <Button Command="{Binding SetValuebackCommand}" Grid.Row="5" Text="Ausloggen"/>
+
+                <Grid ColumnDefinitions="*,*, *" Grid.Row="0">
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Vorname" />
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Zuname"/>
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Email"/>
+            </Grid>
+
+
+            <CollectionView Grid.Row="1"
+                ItemsSource="{Binding Customers}"
+                SelectedItem="{Binding SelectedCustomer}"
+                
+                SelectionMode="Single">
+
+                <CollectionView.EmptyView>
+                    <Label  Padding="10" Text="Es wurde kein Kunde hinzugefügt"></Label>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Customer">
+                        <Grid ColumnDefinitions="*,*,*, *">
+                            <Label  Text="{Binding Firstname}" Padding="5"/>
+                            <Label  Grid.Column="1"  Text="{Binding Lastname}" Padding="5"/>
+                            <Label  Grid.Column="2"  Text="{Binding Email}" Padding="5"/>
+
+                                <Image Grid.Column="3" VerticalOptions="Center"
+                                     Source="key.png"
+                                     IsVisible="{Binding Protection}"
+                                     HeightRequest="15"
+                                     HorizontalOptions="Center">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={
+                                    RelativeSource AncestorType={x:Type viewmodels:LoginViewModel
+                                        }
+                                    }, Path=ToggleFavoriteCustomerCommand}"
+                                    CommandParameter="{Binding .}"/>
+
+                                    </Image.GestureRecognizers>
+
+                                </Image>
+
+                                <Image Grid.Column="3" VerticalOptions="Center"
+                                     Source="keyempty.png"
+                                    IsVisible="{Binding Protection, Converter={StaticResource InvertedBoolConverter}}"
+                                        HeightRequest="15"
+                                    HorizontalOptions="Center">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={
+                                        RelativeSource AncestorType={x:Type viewmodels:LoginViewModel
+                                            }
+                                            }, Path=ToggleFavoriteCustomerCommand}"
+                                             CommandParameter="{Binding .}"/>
+                                    </Image.GestureRecognizers>
+
+                                </Image>
+
+
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+                <Button Text="Kunden löschen" Command="{Binding DeleteCustomerCommand}" Grid.Row="2" Grid.ColumnSpan="1" Background="DarkRed"/>
+
+            <Grid ColumnDefinitions="*,*" Grid.Row="0" Grid.Column="1">
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Produktname" Padding="5"/>
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Preis" Padding="5"/>
+
+            </Grid>
+
+
+            <CollectionView Grid.Row="1" Grid.Column="1"
+             ItemsSource="{Binding Products}"
+             SelectedItem="{Binding SelectedProduct}"
+             SelectionMode="Single">
+
+                <CollectionView.EmptyView>
+                    <Label  Padding="10" Text="Es wurde kein Produkt hinzugefügt"></Label>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Product">
+                        <Grid ColumnDefinitions="*,*">
+                            <Label  Text="{Binding ProductName}" Padding="5"/>
+                            <Label  Grid.Column="1"  Text="{Binding Price}" Padding="5"/>
+
+                                <Image Grid.Column="3" VerticalOptions="Center"
+                                    Source="key.png"
+                                    IsVisible="{Binding Protection}"
+                                    HeightRequest="15"
+                                    HorizontalOptions="Center">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={
+                                            RelativeSource AncestorType={x:Type viewmodels:LoginViewModel
+                                                }
+                                                }, Path=ToggleFavoriteProductCommand}"
+                                                CommandParameter="{Binding .}"/>
+
+                                    </Image.GestureRecognizers>
+
+                                </Image>
+
+                                <Image Grid.Column="3" VerticalOptions="Center"
+                                    Source="keyempty.png"
+                                    IsVisible="{Binding Protection, Converter={StaticResource InvertedBoolConverter}}"
+                                    HeightRequest="15"
+                                    HorizontalOptions="Center">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={
+                                            RelativeSource AncestorType={x:Type viewmodels:LoginViewModel
+                                         }
+                                         }, Path=ToggleFavoriteProductCommand}"
+                                             CommandParameter="{Binding .}"/>
+                                    </Image.GestureRecognizers>
+
+                                </Image>
+
+
+
+
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+                <Button Text="Produkt löschen" Command="{Binding DeleteProductCommand}" Grid.Row="2" Grid.ColumnSpan="1" Grid.Column="1" Background="DarkRed"/>
+
+            </Grid>
+
+            
+            <Grid  RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="0" Grid.Row="3"   IsVisible="{Binding SelectedCustomer, Converter={StaticResource IsNotNullConverter}}">
+
+                
+
+                <StackLayout Grid.Row="0" Grid.Column="0" >
+                    <Label Text="Kunden ausbessern" FontSize="Header"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="0">
+                    <Label Text="Vorname" />
+                    <Entry  Text="{Binding SelectedCustomer.Firstname}"  />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="Nachname"/>
+                    <Entry  Text="{Binding SelectedCustomer.Lastname}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Grid.Column="0">
+                    <Label Text="Email"/>
+                    <Entry  Text="{Binding SelectedCustomer.Email}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Grid.Column="1">
+                    <Label Text="PLZ"/>
+                    <Entry  Text="{Binding SelectedCustomer.PLZ}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="3" Grid.Column="0">
+                    <Label  Text="Ort"/>
+                    <Entry   Text="{Binding SelectedCustomer.Ort}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="3" Grid.Column="1">
+                    <Label  Text="Adresse"/>
+                    <Entry   Text="{Binding SelectedCustomer.Adress}"/>
+                </StackLayout>
+
+                <Button  Command="{Binding ChangeCustomerCommand}" BackgroundColor="Orange" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Produkt bearbeiten"/>
+
+            </Grid>
+
+            
+
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="1" Grid.Row="3"   IsVisible="{Binding SelectedProduct, Converter={StaticResource IsNotNullConverter}}">
+
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                    <Label Text="Produkt ausbessern" FontSize="Header"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                    <Label Text="Produktname"/>
+                    <Entry Text="{Binding SelectedProduct.ProductName}"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="Preis"/>
+                    <Entry Text="{Binding SelectedProduct.Price}"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" Grid.Column="0">
+                    <Label Text="USt"/>
+                    <Entry Text="{Binding SelectedProduct.Ust}"/>
+                </VerticalStackLayout>
+
+                <Button  Command="{Binding ChangeProductCommand}" BackgroundColor="Orange" Grid.Row="2" Grid.Column="1" Text="Produkt bearbeiten"/>
+
+            </Grid>
+
+        </Grid>
+
+    </ScrollView>
+
+
+</ContentPage>

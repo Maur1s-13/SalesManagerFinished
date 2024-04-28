@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalesManagerNew.App.Pages.ReportPage"
+             Title="ReportPage"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:viewmodels="clr-namespace:SalesManagerNew.Core.ViewModels;assembly=SalesManagerNew.Core"
+             x:DataType="viewmodels:ReportViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             >
+
+    <ContentPage.Behaviors>
+
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                     Command="{Binding LoadDataCommand}" />
+        <!--ToDO: Add is null Converter-->
+    </ContentPage.Behaviors>
+
+    <chart:SfCartesianChart  x:Name="chart" IsTransposed="True">
+
+        <chart:SfCartesianChart.XAxes>
+            <chart:CategoryAxis />
+        </chart:SfCartesianChart.XAxes>
+
+        <chart:SfCartesianChart.YAxes>
+            <chart:NumericalAxis Minimum="0" Interval="4" Maximum="23" />
+        </chart:SfCartesianChart.YAxes>
+
+        <chart:ColumnSeries ItemsSource="{Binding Products}"
+						XBindingPath="ProductName"
+						YBindingPath="Ust"
+                            Width="0.5"
+                            Spacing="0.3"/>
+
+    </chart:SfCartesianChart>
+
+</ContentPage>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SalesManagerNew.App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SalesManagerNew.App"
+    xmlns:pages="clr-namespace:SalesManagerNew.App.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="SalesManagerNew.App">
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+-->
+    <TabBar>
+
+        <Tab Title="HomePage" Icon="home.png">
+            <ShellContent
+                      ContentTemplate="{DataTemplate local:MainPage}"/>
+        </Tab>
+
+        <Tab Title="AddOrder" Icon="addorder.png">
+            <ShellContent
+        
+                ContentTemplate="{DataTemplate pages:AddOrder}"/>
+
+        </Tab>
+
+        <Tab Title="AddCustomer" Icon="addcustomer.png">
+            <ShellContent
+
+        ContentTemplate="{DataTemplate pages:AddCustomer}"/>
+
+        </Tab>
+
+        <Tab Title="AddProduct" Icon="addorder.png">
+            <ShellContent
+ 
+         ContentTemplate="{DataTemplate pages:AddProduct}"/>
+
+        </Tab>
+
+        <Tab Title="Login" Icon="admin.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate pages:Login}"/>
+        </Tab>
+
+        <Tab Title="Diagramm" Icon="chart.png">
+            <ShellContent
+         ContentTemplate="{DataTemplate pages:ReportPage}"/>
+        </Tab>
+
+
+
+
+
+
+    </TabBar>
+
+
+</Shell>

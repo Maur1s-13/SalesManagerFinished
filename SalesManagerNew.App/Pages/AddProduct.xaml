@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SalesManagerNew.App.Pages.AddProduct"
+             Title="AddProduct"
+             xmlns:viewmodels="clr-namespace:SalesManagerNew.Core.ViewModels;assembly=SalesManagerNew.Core"
+             x:DataType="viewmodels:AddProductViewModel"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker">
+
+
+
+    <Grid Padding="10" Grid.Row="2" ColumnSpacing="10" RowSpacing="5" 
+            ColumnDefinitions="*,*  " RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, *, *, *">
+
+
+
+        <StackLayout Grid.Row="0" Grid.Column="0">
+
+
+            <Label Text="Produktname"/>
+            <Entry Text="{Binding ProductName}" />
+
+        </StackLayout>
+
+
+        <!-- Start km 4/0-->
+        <StackLayout Grid.Row="0" Grid.Column="1" >
+
+            <Label Text="Preis" />
+            <Entry Text="{Binding Price}"/>
+
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" Grid.Column="0" >
+
+            <Label Text="Umsatzsteuer" />
+            <Picker ItemsSource="{Binding Saetze}" SelectedItem="{Binding Ust}"/>
+
+        </StackLayout>
+
+        
+
+        <Button Command="{Binding AddCommand}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Text="Produkt hinzufügen"></Button>
+
+    </Grid>
+
+</ContentPage>
