@@ -45,6 +45,7 @@ namespace SalesManagerNew.Core.ViewModels
 
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(AddOrderCommand))]
         public int _amount = 0;
 
         [ObservableProperty]
@@ -68,7 +69,9 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         public double netto = 0;
 
-        [RelayCommand]
+        public bool CanAdd => this.Amount > 0;
+
+        [RelayCommand(CanExecute = nameof(CanAdd))]
         public void AddOrder()
         {
 
