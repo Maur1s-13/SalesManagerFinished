@@ -9,7 +9,7 @@
              >
 
     <Grid Padding="10" Grid.Row="2" ColumnSpacing="10" RowSpacing="20" 
-   ColumnDefinitions="*,*" RowDefinitions="*, *, *, *, *, *, *, *, *">
+ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, *, *, *">
 
 
 
@@ -22,7 +22,7 @@
         </StackLayout>
 
 
-        
+
         <StackLayout Grid.Row="0" Grid.Column="1" >
 
             <Label Text="Nachname" />

@@ -23,8 +23,9 @@ public interface IRepository
     public List<Product> GetAllProducts();
 
     public List<Customer> GetAllCustomers();
-
     public List<Order> GetAllOrders();
+
+    
     public bool UpdateCustomer(Customer customer);
 
     public bool ApplyProtectionCustomer(Customer customer);

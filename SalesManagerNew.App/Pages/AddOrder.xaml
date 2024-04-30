@@ -16,12 +16,6 @@
 
         <toolkit:EventToCommandBehavior EventName="Appearing"
                                     Command="{Binding LoadCommand}" />
-
-        
-
-
-
-        <!--ToDO: Add is null Converter-->
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
@@ -55,10 +49,11 @@
 
             </StackLayout>
 
-            <Grid ColumnDefinitions="*,*,*" Grid.Row="0">
+            <Grid ColumnDefinitions="100, 225, 150, Auto" Grid.Row="0">
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Vorname" Padding="5"/>
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Zuname" Padding="5"/>
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Email" Padding="5"/>
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="3" Text="Schutz" Padding="5"/>
             </Grid>
 
 
@@ -117,9 +112,10 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Grid ColumnDefinitions="*,*" Grid.Row="0" Grid.Column="1">
+            <Grid ColumnDefinitions="183,250, Auto" Grid.Row="0" Grid.Column="1">
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Produktname" Padding="5"/>
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Preis" Padding="5"/>
+                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Schutz" Padding="5"/>
                 
             </Grid>
 

@@ -72,26 +72,7 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
-        public List<Order> GetAllOrders()
-        {
-            try
-            {
-                using (var context = new MyDbContext(_path))
-                {
-                    var orders = context.Orders
-                        .Include(o => o.Customer)
-                        .Include(o => o.Product)
-                        .ToList();
-
-                    return orders;
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return new List<Order>();
-            }
-        }
+        
 
         public List<Customer> GetAllCustomers()
         {
@@ -100,6 +81,25 @@ namespace SalesManagerNew.Lib.Services
                 return db.Customers.ToList();
             }
         }
+
+        public List<Order> GetAllOrders()
+        {
+            try
+            {
+                using (var db = new MyDbContext(_path))
+                {
+                    return db.Orders.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine( "Fehler in Order", ex.InnerException);
+                return new List<Order>();   
+            }
+
+            
+        }
+
 
         public bool ApplyProtectionCustomer(Customer customer)
         {

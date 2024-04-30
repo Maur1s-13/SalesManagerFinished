@@ -40,7 +40,7 @@
 
         
 
-        <Button Command="{Binding AddCommand}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" Text="Produkt hinzufügen"></Button>
+        <Button Command="{Binding AddCommand}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Text="Produkt hinzufügen"></Button>
 
     </Grid>
 

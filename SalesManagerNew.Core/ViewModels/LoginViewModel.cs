@@ -25,14 +25,15 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Product> _products = [];
 
-        [ObservableProperty]
-        ObservableCollection<SalesManagerNew.Lib.Models.Order> _orders = [];
+        
 
         [ObservableProperty]
         Lib.Models.Customer _selectedCustomer = null;
 
         [ObservableProperty]
         Lib.Models.Product _selectedProduct = null;
+
+        
 
         [ObservableProperty]
         public int? schluessel = null;
@@ -47,7 +48,7 @@ namespace SalesManagerNew.Core.ViewModels
         {
             this.Customers.Clear();
             this.Products.Clear();
-            this.Orders.Clear();
+            
 
             foreach (var customer in _repository.GetAllCustomers())
             {
@@ -58,6 +59,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 this.Products.Add(product);
             }
+            
 
            
             
