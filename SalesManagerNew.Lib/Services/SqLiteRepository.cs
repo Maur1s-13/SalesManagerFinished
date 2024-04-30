@@ -82,23 +82,7 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
-        public List<Order> GetAllOrders()
-        {
-            try
-            {
-                using (var db = new MyDbContext(_path))
-                {
-                    return db.Orders.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine( "Fehler in Order", ex.InnerException);
-                return new List<Order>();   
-            }
-
-            
-        }
+       
 
 
         public bool ApplyProtectionCustomer(Customer customer)
@@ -144,8 +128,6 @@ namespace SalesManagerNew.Lib.Services
                     }
 
                     existingProduct.Protection = existingProduct.Protection;
-
-
                     context.SaveChanges();
                 }
 
@@ -208,6 +190,7 @@ namespace SalesManagerNew.Lib.Services
                     existingProduct.ProductName = product.ProductName;
                     existingProduct.Price = product.Price;
                     existingProduct.Ust = product.Ust;
+                    existingProduct.Protection = product.Protection;
 
                     context.SaveChanges();
                 }

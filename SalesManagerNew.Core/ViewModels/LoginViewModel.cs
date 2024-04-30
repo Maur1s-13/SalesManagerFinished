@@ -210,7 +210,7 @@ namespace SalesManagerNew.Core.ViewModels
         {
             
                 product.Protection = !product.Protection;
-                var result = _repository.ApplyProtectionProduct(product);
+                var result = _repository.UpdateProduct(product);
                 if (result)
                 {
                     int pos = this.Products.IndexOf(product);

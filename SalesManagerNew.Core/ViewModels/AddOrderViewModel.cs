@@ -127,10 +127,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 this.Products.Add(product);
             }
-            foreach (var order in _repository.GetAllOrders())
-            {
-                this.Orders.Add(order);
-            }
+            
         }
 
         
@@ -244,7 +241,7 @@ namespace SalesManagerNew.Core.ViewModels
             if (product.Protection == false)
             {
                 product.Protection = !product.Protection;
-                var result = _repository.ApplyProtectionProduct(product);
+                var result = _repository.UpdateProduct(product);
                 if (result)
                 {
                     int pos = this.Products.IndexOf(product);
