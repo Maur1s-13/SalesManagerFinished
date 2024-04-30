@@ -22,8 +22,6 @@
             <toolkit:IsNullConverter x:Key="IsNullConverter"/>
             <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
-
-
         </ResourceDictionary>
 
     </ContentPage.Resources>
@@ -37,13 +35,21 @@
 
             <VerticalStackLayout Grid.Column="0" Grid.Row="0">
 
-                <Entry IsPassword="True" Text="{Binding Entrypassword}" Placeholder="Enter Password"/>
+                <Entry  IsPassword="True" Text="{Binding Entrypassword}" Placeholder="Enter Password"/>
                 
 
             </VerticalStackLayout>
 
             <StackLayout Grid.Row="1">
-                    <Button Text="Passwort bestätigen" Command="{Binding SetValueCommand}"/>
+                
+                    <Button ImageSource="login.png" Text="Passwort bestätigen" 
+                            Command="{Binding SetValueCommand}"
+                            BackgroundColor="Transparent"
+                            BorderColor="Black"
+                            BorderWidth="2"
+                            
+                            TextColor="Black"
+                           />
 
                 </StackLayout>
 
@@ -51,33 +57,26 @@
 
         </Grid>
 
-        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.ColumnSpan="2" IsVisible="{Binding Schluessel, Converter={StaticResource IsNotNullConverter}}">
+        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.ColumnSpan="2" RowSpacing="10" ColumnSpacing="5" IsVisible="{Binding Schluessel, Converter={StaticResource IsNotNullConverter}}">
 
 
-                
 
-                <Button ImageSource="logout.png"  Command="{Binding SetValuebackCommand}" Grid.Row="5" Text="Ausloggen"
+
+                <Button ImageSource="logout.png"  Command="{Binding SetValuebackCommand}" Grid.Row="0" Grid.ColumnSpan="2" Text="Ausloggen"
                         Background="Transparent"
                         TextColor="Black"
                         BorderColor="Black"
-                        BorderWidth="2"
-                        
-                        
-                        />
-
-                
-                
+                        BorderWidth="2"/>
 
 
+                <Grid ColumnDefinitions="*,*, *" Grid.Row="1">
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Vorname" />
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Zuname"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Email"/>
+                </Grid>
 
-                <Grid ColumnDefinitions="*,*, *" Grid.Row="0">
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Vorname" />
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Zuname"/>
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="Email"/>
-            </Grid>
 
-
-            <CollectionView Grid.Row="1"
+                <CollectionView Grid.Row="2"
                 ItemsSource="{Binding Customers}"
                 SelectedItem="{Binding SelectedCustomer}"
                 
@@ -132,16 +131,16 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-                <Button Text="Kunden löschen" Command="{Binding DeleteCustomerCommand}" Grid.Row="2" Grid.ColumnSpan="1" Background="DarkRed"/>
+                <Button Text="Kunden löschen" Command="{Binding DeleteCustomerCommand}" Grid.Row="3" Grid.ColumnSpan="1" Background="DarkRed"/>
 
-            <Grid ColumnDefinitions="*,*" Grid.Row="0" Grid.Column="1">
+            <Grid ColumnDefinitions="*,*" Grid.Row="1" Grid.Column="1">
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Produktname" Padding="5"/>
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="Preis" Padding="5"/>
 
             </Grid>
 
 
-            <CollectionView Grid.Row="1" Grid.Column="1"
+            <CollectionView Grid.Row="2" Grid.Column="1"
              ItemsSource="{Binding Products}"
              SelectedItem="{Binding SelectedProduct}"
              SelectionMode="Single">
@@ -198,12 +197,12 @@
 
                 
 
-                <Button Text="Produkt löschen" Command="{Binding DeleteProductCommand}" Grid.Row="2" Grid.ColumnSpan="1" Grid.Column="1" Background="DarkRed"/>
+                <Button Text="Produkt löschen" Command="{Binding DeleteProductCommand}" Grid.Row="3" Grid.ColumnSpan="1" Grid.Column="1" Background="DarkRed"/>
 
             </Grid>
 
             
-            <Grid  RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="0" Grid.Row="3"   IsVisible="{Binding SelectedCustomer, Converter={StaticResource IsNotNullConverter}}">
+            <Grid  RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="0" Grid.Row="4"   IsVisible="{Binding SelectedCustomer, Converter={StaticResource IsNotNullConverter}}">
 
                 
 
@@ -247,7 +246,7 @@
 
             
 
-            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="1" Grid.Row="3"   IsVisible="{Binding SelectedProduct, Converter={StaticResource IsNotNullConverter}}">
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="1" Grid.Row="4"   IsVisible="{Binding SelectedProduct, Converter={StaticResource IsNotNullConverter}}">
 
 
                 <VerticalStackLayout Grid.Row="0" Grid.Column="0">

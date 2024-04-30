@@ -64,6 +64,7 @@
 	  <None Remove="Resources\Images\home.svg" />
 	  <None Remove="Resources\Images\key.svg" />
 	  <None Remove="Resources\Images\keyempty.svg" />
+	  <None Remove="Resources\Images\login.svg" />
 	  <None Remove="Resources\Images\logout.svg" />
 	</ItemGroup>
 
