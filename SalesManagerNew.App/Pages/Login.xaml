@@ -7,6 +7,7 @@
              x:DataType="viewmodels:LoginViewModel"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:SalesManagerNew.Lib.Models;assembly=SalesManagerNew.Lib"
+             
              >
 
     <ContentPage.Behaviors>
@@ -21,6 +22,8 @@
             <toolkit:IsNullConverter x:Key="IsNullConverter"/>
             <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+
+
         </ResourceDictionary>
 
     </ContentPage.Resources>
@@ -40,8 +43,9 @@
             </VerticalStackLayout>
 
             <StackLayout Grid.Row="1">
-                <Button Text="Passwort bestätigen" Command="{Binding SetValueCommand}" />
-            </StackLayout>
+                    <Button Text="Passwort bestätigen" Command="{Binding SetValueCommand}"/>
+
+                </StackLayout>
 
             
 
@@ -49,7 +53,22 @@
 
         <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.ColumnSpan="2" IsVisible="{Binding Schluessel, Converter={StaticResource IsNotNullConverter}}">
 
-                <Button Command="{Binding SetValuebackCommand}" Grid.Row="5" Text="Ausloggen"/>
+
+                
+
+                <Button ImageSource="logout.png"  Command="{Binding SetValuebackCommand}" Grid.Row="5" Text="Ausloggen"
+                        Background="Transparent"
+                        TextColor="Black"
+                        BorderColor="Black"
+                        BorderWidth="2"
+                        
+                        
+                        />
+
+                
+                
+
+
 
                 <Grid ColumnDefinitions="*,*, *" Grid.Row="0">
                 <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="Vorname" />
