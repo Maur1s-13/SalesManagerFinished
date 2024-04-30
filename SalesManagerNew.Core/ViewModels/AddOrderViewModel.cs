@@ -49,7 +49,7 @@ namespace SalesManagerNew.Core.ViewModels
         public int _amount = 0;
 
         [ObservableProperty]
-        public int _price = 0;
+        public double _price = 0;
 
         [ObservableProperty]
         public DateTime _date = DateTime.Now;
