@@ -25,7 +25,10 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Product> _products = [];
 
-        
+        [ObservableProperty]
+        ObservableCollection<SalesManagerNew.Lib.Models.Order> _orders = [];
+
+
 
         [ObservableProperty]
         Lib.Models.Customer _selectedCustomer = null;
@@ -58,6 +61,10 @@ namespace SalesManagerNew.Core.ViewModels
             foreach (var product in _repository.GetAllProducts())
             {
                 this.Products.Add(product);
+            }
+            foreach (var order in _repository.GetAllOrders())
+            {
+                this.Orders.Add(order);
             }
             
 

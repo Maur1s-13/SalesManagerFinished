@@ -17,6 +17,9 @@
     </ContentPage.Behaviors>
 
     <chart:SfCartesianChart  x:Name="chart" IsTransposed="True">
+        
+        
+        
 
         <chart:SfCartesianChart.XAxes>
             <chart:CategoryAxis />
@@ -29,8 +32,10 @@
         <chart:ColumnSeries ItemsSource="{Binding Products}"
 						XBindingPath="ProductName"
 						YBindingPath="Price"
-                            Width="0.5"
-                            Spacing="0.3"/>
+                         Width="0.6"
+                        Spacing="0.3"
+                            EnableTooltip="True"
+                            />
 
     </chart:SfCartesianChart>
 
