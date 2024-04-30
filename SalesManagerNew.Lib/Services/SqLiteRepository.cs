@@ -82,7 +82,41 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
-       
+        public List<Order> GetAllOrders()
+        {
+            try
+            {
+                using (var db = new MyDbContext(_path))
+                {
+                    return db.Orders.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.InnerException.Message);
+                return new List<Order>();
+            }
+        }
+
+        public double GetHighestProductPrice()
+        {
+            try
+            {
+                using (var db = new MyDbContext(_path))
+                {
+                    var highestPrice = db.Products.Max(p => p.Price);
+                    return highestPrice;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return 0; 
+            }
+        }
+
+
 
 
         public bool ApplyProtectionCustomer(Customer customer)

@@ -25,9 +25,6 @@ namespace SalesManagerNew.Core.ViewModels
         IRepository _repository = repository;
         IAlertService _alertservice = alertService;
 
-        
-        
-
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Customer> _customers = [];
 
@@ -117,6 +114,7 @@ namespace SalesManagerNew.Core.ViewModels
         {
             this.Customers.Clear();
             this.Products.Clear();
+            
 
             foreach(var customer in _repository.GetAllCustomers())
             {
@@ -128,6 +126,8 @@ namespace SalesManagerNew.Core.ViewModels
                 this.Products.Add(product);
             }
             
+
+
         }
 
         

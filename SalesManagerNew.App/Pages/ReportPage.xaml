@@ -23,7 +23,7 @@
         </chart:SfCartesianChart.XAxes>
 
         <chart:SfCartesianChart.YAxes>
-            <chart:NumericalAxis Minimum="0" Interval="25" Maximum="250" />
+            <chart:NumericalAxis Minimum="0" Interval="50" Maximum="{Binding Maximum}" />
         </chart:SfCartesianChart.YAxes>
 
         <chart:ColumnSeries ItemsSource="{Binding Products}"

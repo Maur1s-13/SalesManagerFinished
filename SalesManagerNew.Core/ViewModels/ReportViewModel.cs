@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SalesManagerNew.Core.Messages;
 using SalesManagerNew.Lib.Interfaces;
+using SalesManagerNew.Lib.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,8 +17,16 @@ namespace SalesManagerNew.Core.ViewModels
     {
         IRepository _repository;
 
+        string _path = "";
+
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Product> _products = [];
+
+        [ObservableProperty]
+        double highestProduct;
+
+        [ObservableProperty]
+        double maximum;
 
         public ReportViewModel(IRepository repository)
         {
@@ -31,6 +40,10 @@ namespace SalesManagerNew.Core.ViewModels
                     //add to list
                     this.Products.Add(m.Value);
                 });
+
+            this.HighestProduct =  _repository.GetHighestProductPrice();
+
+            this.Maximum = this.HighestProduct + 50;
 
         }
 
