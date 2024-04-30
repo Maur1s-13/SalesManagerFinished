@@ -15,7 +15,7 @@ namespace SalesManagerNew.Lib.Services
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Order> Orders { get; }
+        public DbSet<Order> Orders { get; set; }
 
         public string DbPath { get; set; }
 
