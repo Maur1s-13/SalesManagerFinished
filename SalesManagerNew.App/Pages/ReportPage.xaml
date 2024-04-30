@@ -17,9 +17,13 @@
     </ContentPage.Behaviors>
 
     <chart:SfCartesianChart  x:Name="chart" IsTransposed="True">
+
         
-        
-        
+            
+        <chart:SfCartesianChart.TooltipBehavior>
+            <chart:ChartTooltipBehavior/>
+        </chart:SfCartesianChart.TooltipBehavior>
+
 
         <chart:SfCartesianChart.XAxes>
             <chart:CategoryAxis />
@@ -30,11 +34,13 @@
         </chart:SfCartesianChart.YAxes>
 
         <chart:ColumnSeries ItemsSource="{Binding Products}"
+                            
 						XBindingPath="ProductName"
 						YBindingPath="Price"
                          Width="0.6"
                         Spacing="0.3"
                             EnableTooltip="True"
+                            
                             />
 
     </chart:SfCartesianChart>

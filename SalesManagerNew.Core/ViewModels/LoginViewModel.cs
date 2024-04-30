@@ -36,7 +36,10 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         Lib.Models.Product _selectedProduct = null;
 
-        
+        [ObservableProperty]
+        Lib.Models.Order _selectedOrder = null;
+
+
 
         [ObservableProperty]
         public int? schluessel = null;
@@ -51,6 +54,7 @@ namespace SalesManagerNew.Core.ViewModels
         {
             this.Customers.Clear();
             this.Products.Clear();
+            this.Orders.Clear();
             
 
             foreach (var customer in _repository.GetAllCustomers())

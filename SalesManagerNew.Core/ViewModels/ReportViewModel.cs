@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SalesManagerNew.Core.Messages;
 using SalesManagerNew.Lib.Interfaces;
+using SalesManagerNew.Lib.Models;
 using SalesManagerNew.Lib.Services;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace SalesManagerNew.Core.ViewModels
 
         [ObservableProperty]
         double maximum;
+
+        [ObservableProperty]
+        Product product;
 
         public ReportViewModel(IRepository repository)
         {
