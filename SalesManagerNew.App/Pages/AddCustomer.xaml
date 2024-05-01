@@ -55,7 +55,7 @@ ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, *, *, *
         <StackLayout Grid.Row="2" Grid.Column="1" >
 
             <Label Text="Email" />
-            <Entry  Text="{Binding Email}"/>
+            <Entry   Text="{Binding Email}"/>
 
         </StackLayout>
 

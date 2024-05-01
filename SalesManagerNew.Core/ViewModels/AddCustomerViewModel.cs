@@ -28,10 +28,11 @@ namespace SalesManagerNew.Core.ViewModels
         public string _firstname;
 
         [ObservableProperty]
-        string _lastname;   
+        string _lastname;
 
         [ObservableProperty]
-        public string _email;
+        [NotifyCanExecuteChangedFor(nameof(AddCommand))]
+        public string _email = "@";
 
         [ObservableProperty]
         public bool _protection = false;
@@ -45,16 +46,17 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         public string adress;
 
+        public bool CanAdd => this.Email.Contains("@");
 
 
-
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanAdd))]
         void Add()
         {
 
 
             try
             {
+       
                 _repository.AddCustomer(this.Firstname, this.Lastname, this.Email, this.Protection, this.Plz, this.Ort, this.Adress);
 
                 this.Firstname = "";
