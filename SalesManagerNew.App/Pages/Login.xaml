@@ -247,6 +247,7 @@
                 </CollectionView>
 
                 <Button Text="Bestellung löschen" Command="{Binding DeleteOrderCommand}"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="DarkRed"/>
+                <Button Text="Sql Tabelle öffnen" Command="{Binding OpenFileCommand}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="DarkBlue"/>
 
             </Grid>
 

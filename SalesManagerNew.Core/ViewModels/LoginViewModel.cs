@@ -11,6 +11,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Windows.Input;
 
 namespace SalesManagerNew.Core.ViewModels
 {
@@ -29,6 +31,28 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Order> _orders = [];
 
+
+        
+
+
+        [RelayCommand]
+        public void OpenFile()
+        {
+            string filePath = @"C:\Users\thoma\AppData\Local\Packages\com.companyname.salesmanagernew.app_9zz4h110yvjzm\LocalState\bestellungen.db";
+
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo(filePath)
+                {
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error opening file: {ex.Message}");
+            }
+        }
 
 
         [ObservableProperty]
