@@ -75,6 +75,7 @@
 
 
                 <CollectionView Grid.Row="2"
+                   
                 ItemsSource="{Binding Customers}"
                 SelectedItem="{Binding SelectedCustomer}"
                 
@@ -196,7 +197,7 @@
                 <Button Text="Produkt löschen" Command="{Binding DeleteProductCommand}" Grid.Row="3" Grid.ColumnSpan="1" Grid.Column="1" Background="DarkRed"/>
 
 
-                <Grid ColumnDefinitions="*,*,*,*,*,*" Grid.Row="11" Grid.Column="0">
+                <Grid ColumnDefinitions="*,*,*,*,*,*" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="OrderId" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="KundenId" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="ProduktId" Padding="5"/>
@@ -216,7 +217,7 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Order">
-                            <Grid ColumnDefinitions="*,*">
+                            <Grid ColumnDefinitions="*,*,*,*,*,*">
                                 <Label  Text="{Binding OrderID}" Padding="5"/>
                                 <Label  Grid.Column="1"  Text="{Binding CustomerId}" Padding="5"/>
                                 <Label  Grid.Column="2"  Text="{Binding ProductId}" Padding="5"/>
@@ -230,11 +231,43 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
+                <Button Text="Bestellung löschen"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="DarkRed"/>
 
             </Grid>
 
+
+            <Grid RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,*" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding SelectedOrder, Converter={StaticResource IsNotNullConverter}}">
+                <StackLayout Grid.Row="0" Grid.Column="0">
+                    <Label Text="Bestellung ausbessern" FontSize="Header"/>
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="0">
+                    <Label Text="Menge"/>
+                    <Entry Text="{Binding SelectedOrder.Amount}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="Datum"/>
+                    <DatePicker Date="{Binding SelectedOrder.Date}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Grid.Column="0" >
+                    <Label Text="Gesamtpreis"/>
+                    <Entry Text="{Binding SelectedOrder.Total}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Grid.Column="1" >
+                    <Label Text="Nettopreis"/>
+                    <Entry Text="{Binding SelectedOrder.Netto}"/>
+
+                </StackLayout>
+
+                <Button Text="Bestellung ausbessern" BackgroundColor="Orange" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+            </Grid> 
+
             
-            <Grid  RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="0" Grid.Row="4"   IsVisible="{Binding SelectedCustomer, Converter={StaticResource IsNotNullConverter}}">
+            <Grid  RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="0" Grid.Row="6"   IsVisible="{Binding SelectedCustomer, Converter={StaticResource IsNotNullConverter}}">
 
                 
 
@@ -276,9 +309,9 @@
 
             </Grid>
 
-            
 
-            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="1" Grid.Row="4"   IsVisible="{Binding SelectedProduct, Converter={StaticResource IsNotNullConverter}}">
+
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.Column="1" Grid.Row="6"   IsVisible="{Binding SelectedProduct, Converter={StaticResource IsNotNullConverter}}">
 
 
                 <VerticalStackLayout Grid.Row="0" Grid.Column="0">
@@ -295,17 +328,17 @@
                     <Entry Text="{Binding SelectedProduct.Price}"/>
                 </VerticalStackLayout>
 
-                <VerticalStackLayout Grid.Row="2" Grid.Column="0">
+                <VerticalStackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                     <Label Text="USt"/>
                     <Entry Text="{Binding SelectedProduct.Ust}"/>
                 </VerticalStackLayout>
 
-                <Button  Command="{Binding ChangeProductCommand}" BackgroundColor="Orange" Grid.Row="2" Grid.Column="1" Text="Produkt bearbeiten"/>
-                
+                <Button  Command="{Binding ChangeProductCommand}" BackgroundColor="Orange" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Produkt bearbeiten"/>
+
 
             </Grid>
 
-            
+
 
 
         </Grid>
