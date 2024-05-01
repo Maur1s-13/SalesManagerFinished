@@ -29,9 +29,9 @@
     <ScrollView>
 
     <Grid Padding="10" Grid.Row="2" ColumnSpacing="10" RowSpacing="20" 
-    ColumnDefinitions="*,*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *,*,*,*,*">
+    ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *,*,*,*,*">
 
-            <Grid  ColumnDefinitions="Auto, Auto, Auto" RowDefinitions="Auto, Auto, Auto" IsVisible="{Binding Schluessel, Converter={StaticResource IsNullConverter}}">
+            <Grid  ColumnDefinitions="Auto, Auto" RowDefinitions="Auto, Auto" IsVisible="{Binding Schluessel, Converter={StaticResource IsNullConverter}}">
 
 
                 <VerticalStackLayout Grid.Row="0" Grid.Column="0" IsVisible="{Binding ShowPassword, Converter={StaticResource IsNullConverter}}">

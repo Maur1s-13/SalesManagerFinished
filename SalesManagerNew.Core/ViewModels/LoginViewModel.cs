@@ -112,6 +112,7 @@ namespace SalesManagerNew.Core.ViewModels
             Schluessel = null;
             this.SelectedCustomer = null;
             this.SelectedProduct = null;
+            ShowPassword = null;
         }
 
         [RelayCommand]
