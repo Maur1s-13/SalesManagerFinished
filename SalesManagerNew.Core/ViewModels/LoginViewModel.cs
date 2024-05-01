@@ -46,9 +46,13 @@ namespace SalesManagerNew.Core.ViewModels
         public int? schluessel = null;
 
         [ObservableProperty]
+        public int? showPassword = null;
+
+        [ObservableProperty]
         public string entrypassword;
 
-        private readonly string _password = "passwort123";
+        [ObservableProperty]
+        private string _password = "passwort123";
 
         [RelayCommand]
         public void Load()
@@ -71,10 +75,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 this.Orders.Add(order);
             }
-            
-
-           
-            
+          
         }
 
         [RelayCommand]
@@ -91,6 +92,18 @@ namespace SalesManagerNew.Core.ViewModels
                 _alertservice.ShowAlert("Fehler!",
                     "Falsches Passwort!");
             }
+        }
+
+        [RelayCommand]
+        public void SetEye()
+        {
+            ShowPassword = 0;
+        }
+
+        [RelayCommand]
+        public void SetEyeBack()
+        {
+            ShowPassword = null;
         }
 
         [RelayCommand]

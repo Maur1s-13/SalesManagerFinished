@@ -61,6 +61,8 @@
 	  <None Remove="Resources\Images\addOrder.svg" />
 	  <None Remove="Resources\Images\admin.svg" />
 	  <None Remove="Resources\Images\chart.svg" />
+	  <None Remove="Resources\Images\eyeclosed.svg" />
+	  <None Remove="Resources\Images\eyeopen.svg" />
 	  <None Remove="Resources\Images\home.svg" />
 	  <None Remove="Resources\Images\key.svg" />
 	  <None Remove="Resources\Images\keyempty.svg" />

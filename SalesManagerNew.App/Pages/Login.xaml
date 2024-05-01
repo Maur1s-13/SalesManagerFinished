@@ -29,16 +29,29 @@
     <ScrollView>
 
     <Grid Padding="10" Grid.Row="2" ColumnSpacing="10" RowSpacing="20" 
-    ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *,*,*,*,*">
+    ColumnDefinitions="*,*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *,*,*,*,*">
 
-            <Grid  ColumnDefinitions="Auto, *" RowDefinitions="Auto, *"   IsVisible="{Binding Schluessel, Converter={StaticResource IsNullConverter}}">
+            <Grid  ColumnDefinitions="Auto, Auto, Auto" RowDefinitions="Auto, Auto, Auto" IsVisible="{Binding Schluessel, Converter={StaticResource IsNullConverter}}">
 
-            <VerticalStackLayout Grid.Column="0" Grid.Row="0">
-                    <Label Text="Admin Page Login" FontSize="Header"/>
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0" IsVisible="{Binding ShowPassword, Converter={StaticResource IsNullConverter}}">
+                    <Label Text="Admin Page Login" FontSize="Large"/>
                     <Entry  IsPassword="True" Text="{Binding Entrypassword}" Placeholder="Enter Password"/>
-            </VerticalStackLayout>
+                    <ImageButton Source="eyeopen.png" Command="{Binding SetEyeCommand}"/>
 
-            <StackLayout Grid.Row="1">
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0" IsVisible="{Binding ShowPassword, Converter={StaticResource IsNotNullConverter}}">
+                    <Label Text="Admin Page Login" FontSize="Large"/>
+                    
+                    <Entry  IsPassword="False" Text="{Binding Entrypassword}" Placeholder="Enter Password"/>
+                    <ImageButton Source="eyeclosed.png" Command="{Binding SetEyeBackCommand}"/>
+
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
                 
                     <Button ImageSource="login.png" Text="Passwort bestätigen" 
                             Command="{Binding SetValueCommand}"
@@ -49,7 +62,7 @@
                             TextColor="Black"
                            />
 
-                </StackLayout>
+             </VerticalStackLayout>
 
             
 
