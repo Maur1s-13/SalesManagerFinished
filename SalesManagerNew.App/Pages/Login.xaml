@@ -29,7 +29,7 @@
     <ScrollView>
 
     <Grid Padding="10" Grid.Row="2" ColumnSpacing="10" RowSpacing="20" 
-    ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *">
+    ColumnDefinitions="*,*" RowDefinitions="Auto, Auto, *, *, *, *, *, *, *,*,*,*,*">
 
             <Grid  ColumnDefinitions="Auto, *" RowDefinitions="Auto, *"   IsVisible="{Binding Schluessel, Converter={StaticResource IsNullConverter}}">
 
@@ -55,7 +55,7 @@
 
         </Grid>
 
-        <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*" Grid.ColumnSpan="2" RowSpacing="10" ColumnSpacing="5" IsVisible="{Binding Schluessel, Converter={StaticResource IsNotNullConverter}}">
+        <Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*" Grid.ColumnSpan="2" RowSpacing="10" ColumnSpacing="5" IsVisible="{Binding Schluessel, Converter={StaticResource IsNotNullConverter}}">
 
 
 
@@ -185,6 +185,7 @@
 
                                 </Image>
 
+
                             </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -193,6 +194,42 @@
                 
 
                 <Button Text="Produkt löschen" Command="{Binding DeleteProductCommand}" Grid.Row="3" Grid.ColumnSpan="1" Grid.Column="1" Background="DarkRed"/>
+
+
+                <Grid ColumnDefinitions="*,*,*,*,*,*" Grid.Row="11" Grid.Column="0">
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="OrderId" Padding="5"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="KundenId" Padding="5"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="ProduktId" Padding="5"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="3" Text="Menge" Padding="5"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="4" Text="Gesamtpreis" Padding="5"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="5" Text="NettoPreis" Padding="5"/>
+
+                </Grid>
+
+                <CollectionView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                ItemsSource="{Binding Orders}"
+                SelectedItem="{Binding SelectedOrder}"
+                SelectionMode="Single">
+                
+                    <CollectionView.EmptyView>
+                        <Label  Padding="10" Text="Es wurde noch keine Bestellung hinzugefügt"></Label>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Order">
+                            <Grid ColumnDefinitions="*,*">
+                                <Label  Text="{Binding OrderID}" Padding="5"/>
+                                <Label  Grid.Column="1"  Text="{Binding CustomerId}" Padding="5"/>
+                                <Label  Grid.Column="2"  Text="{Binding ProductId}" Padding="5"/>
+                                <Label  Grid.Column="3"  Text="{Binding Amount}" Padding="5"/>
+                                <Label  Grid.Column="4"  Text="{Binding Total}" Padding="5"/>
+                                <Label  Grid.Column="5"  Text="{Binding Netto}" Padding="5"/>
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
 
             </Grid>
 
@@ -268,36 +305,7 @@
 
             </Grid>
 
-            <Grid ColumnDefinitions="*,*" Grid.Row="1" Grid.Column="1">
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="OrderId" Padding="5"/>
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="KundenId" Padding="5"/>
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="ProduktId" Padding="5"/>
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="3" Text="Menge" Padding="5"/>
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="4" Text="Gesamtpreis" Padding="5"/>
-                <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="5" Text="NetoPreis" Padding="5"/>
-
-            </Grid>
-
-            <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-            ItemsSource="{Binding Orders}"
-            SelectedItem="{Binding SelectedOrder}"
-            SelectionMode="Single">
-
-                <CollectionView.EmptyView>
-                    <Label  Padding="10" Text="Es wurde noch keine Bestellung hinzugefügt"></Label>
-                </CollectionView.EmptyView>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Order">
-                        <Grid ColumnDefinitions="*,*">
-                            <Label  Text="{Binding OrderID}" Padding="5"/>
-                            <Label  Grid.Column="1"  Text="{Binding CustomerId}" Padding="5"/>
-                            <Label  Grid.Column="1"  Text="{Binding ProductId}" Padding="5"/>
-
-                        </Grid>
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            
 
 
         </Grid>
