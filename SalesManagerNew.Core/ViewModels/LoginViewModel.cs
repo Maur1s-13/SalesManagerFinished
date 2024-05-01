@@ -118,6 +118,23 @@ namespace SalesManagerNew.Core.ViewModels
         }
 
         [RelayCommand]
+        public void DeleteOrder()
+        {
+            if (SelectedOrder != null)
+            {
+                _repository.DeleteOrder(SelectedOrder);
+                _alertservice.ShowAlert("Erfolg!",
+                    "Die Bestellung wurde gelöscht");
+                this.Orders.Remove(SelectedOrder);
+            }
+            else
+            {
+                _alertservice.ShowAlert("Fehler",
+                    "Die Bestellung konnte nicht gelöscht werden");
+            }
+        }
+
+        [RelayCommand]
         public void DeleteProduct()
         {
             if (SelectedProduct != null)
@@ -238,7 +255,6 @@ namespace SalesManagerNew.Core.ViewModels
                             "Der Status konnte nicht verändert werden");
                     }
                 }
-        
 
         }
 

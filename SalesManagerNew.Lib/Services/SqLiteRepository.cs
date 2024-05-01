@@ -310,6 +310,24 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
+        public bool DeleteOrder(Order oder)
+        {
+            try
+            {
+                using(var context = new MyDbContext(_path))
+                {
+                    context.Remove(oder);
+                    context.SaveChanges(); 
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.InnerException.Message);
+                return false;
+            }
+        }
+
 
     }
 }
