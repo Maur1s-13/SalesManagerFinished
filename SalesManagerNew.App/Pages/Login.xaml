@@ -197,13 +197,14 @@
                 <Button Text="Produkt löschen" Command="{Binding DeleteProductCommand}" Grid.Row="3" Grid.ColumnSpan="1" Grid.Column="1" Background="DarkRed"/>
 
 
-                <Grid ColumnDefinitions="*,*,*,*,*,*" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid ColumnDefinitions="*,*,*,*,*,*,*" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="0" Text="OrderId" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="1" Text="KundenId" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="2" Text="ProduktId" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="3" Text="Menge" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="4" Text="Gesamtpreis" Padding="5"/>
                     <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="5" Text="NettoPreis" Padding="5"/>
+                    <Label FontSize="Caption" FontAttributes="Bold" Grid.Column="6" Text="Date" Padding="5"/>
 
                 </Grid>
 
@@ -217,13 +218,14 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Order">
-                            <Grid ColumnDefinitions="*,*,*,*,*,*">
+                            <Grid ColumnDefinitions="*,*,*,*,*,*,*">
                                 <Label  Text="{Binding OrderID}" Padding="5"/>
                                 <Label  Grid.Column="1"  Text="{Binding CustomerId}" Padding="5"/>
                                 <Label  Grid.Column="2"  Text="{Binding ProductId}" Padding="5"/>
                                 <Label  Grid.Column="3"  Text="{Binding Amount}" Padding="5"/>
                                 <Label  Grid.Column="4"  Text="{Binding Total}" Padding="5"/>
                                 <Label  Grid.Column="5"  Text="{Binding Netto}" Padding="5"/>
+                                <Label  Grid.Column="6"  Text="{Binding Date}" Padding="5"/>
 
                             </Grid>
 
@@ -231,7 +233,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Button Text="Bestellung löschen"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="DarkRed"/>
+                <Button Text="Bestellung löschen" Command="{Binding DeleteOrderCommand}"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="DarkRed"/>
 
             </Grid>
 
@@ -263,7 +265,7 @@
 
                 </StackLayout>
 
-                <Button Text="Bestellung ausbessern" BackgroundColor="Orange" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Button Text="Bestellung ausbessern" Command="{Binding ChangeOrderCommand}" BackgroundColor="Orange" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
             </Grid> 
 
             
