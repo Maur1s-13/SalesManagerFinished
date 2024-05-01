@@ -26,6 +26,8 @@ public interface IRepository
 
     public List<Order> GetAllOrders();
 
+    public double GetHighestNettoPrice();
+
     public double GetHighestProductPrice();
     public bool UpdateCustomer(Customer customer);
 

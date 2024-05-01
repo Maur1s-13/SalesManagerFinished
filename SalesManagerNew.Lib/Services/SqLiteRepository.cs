@@ -116,6 +116,23 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
+        public double GetHighestNettoPrice()
+        {
+            try
+            {
+                using(var db = new MyDbContext(_path))
+                {
+                    var highesNetto = db.Orders.Max(n => n.Netto);
+                    return highesNetto;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.Write(ex.Message);
+                throw;
+            }
+        }
+
 
 
 
