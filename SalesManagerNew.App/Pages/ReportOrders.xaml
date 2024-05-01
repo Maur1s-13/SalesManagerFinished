@@ -23,15 +23,13 @@
         </chart:SfCartesianChart.XAxes>
 
         <chart:SfCartesianChart.YAxes>
-            <chart:NumericalAxis Minimum="0" Maximum="{Binding Maximum}" Interval="20"/>
+            <chart:NumericalAxis Minimum="0" Maximum="{Binding Maximum}" Interval="40"/>
         </chart:SfCartesianChart.YAxes>
 
         <chart:ColumnSeries ItemsSource="{Binding Orders}"
 						XBindingPath="Date"
 						YBindingPath="Netto"
-                        Width="0.1"
-                         
-                           />
+                            Width="0.5"/>
     </chart:SfCartesianChart>
 
 
