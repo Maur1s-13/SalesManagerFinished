@@ -6,6 +6,7 @@ using SalesManagerNew.Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -175,6 +176,31 @@ namespace SalesManagerNew.Core.ViewModels
                     }
                 }
             
+        }
+
+        [RelayCommand]
+        public void ChangeOrder(Order order)
+        {
+            order = SelectedOrder;
+
+            var result = _repository.UpdateOrder(order);    
+
+            if (result)
+            {
+                int pos = this.Orders.IndexOf(order);
+
+                if (pos != 1)
+                {
+                    this.Orders[pos] = order;
+                    _alertservice.ShowAlert("Erfolg",
+                        "Die Bestellung wurde bearbeitet");
+                }
+                else
+                {
+                    _alertservice.ShowAlert("Fehler",
+                        "Die Bestellung konnte nicht bearbeitet werden");
+                }
+            }
         }
 
         [RelayCommand]
