@@ -46,9 +46,14 @@
                 ContentTemplate="{DataTemplate pages:Login}"/>
         </Tab>
 
-        <Tab Title="Diagramm" Icon="chart.png">
+        <Tab Title="Produkte" Icon="chart.png">
             <ShellContent
          ContentTemplate="{DataTemplate pages:ReportPage}"/>
+        </Tab>
+
+        <Tab Title="Bestellungen" Icon="chart.png">
+            <ShellContent
+        ContentTemplate="{DataTemplate pages:ReportOrders}"/>
         </Tab>
 
 

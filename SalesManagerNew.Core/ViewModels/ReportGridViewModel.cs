@@ -45,9 +45,9 @@ namespace SalesManagerNew.Core.ViewModels
                     this.Orders.Add(m.Value);
                 });
 
-            this.HighestProduct = _repository.GetHighestProductPrice();
+            this.HighesPrice = _repository.GetHighestNettoPrice();
 
-            this.Maximum = this.HighestProduct + 50;
+            this.Maximum = this.HighesPrice + 40;
 
         }
 

@@ -50,6 +50,9 @@ namespace SalesManagerNew.App
             builder.Services.AddSingleton<AddOrder>();
             builder.Services.AddSingleton<AddOrderViewModel>();
 
+            builder.Services.AddSingleton<ReportGridViewModel>();
+            builder.Services.AddSingleton<ReportOrders>();
+
             builder.Services.AddSingleton<Login>();
             builder.Services.AddSingleton<LoginViewModel>();
 
