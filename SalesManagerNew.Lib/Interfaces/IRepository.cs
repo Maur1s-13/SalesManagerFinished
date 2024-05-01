@@ -29,6 +29,8 @@ public interface IRepository
     public double GetHighestProductPrice();
     public bool UpdateCustomer(Customer customer);
 
+    public bool UpdateOrder(Order order);
+
     public bool ApplyProtectionCustomer(Customer customer);
 
     public bool ApplyProtectionProduct(Product product);

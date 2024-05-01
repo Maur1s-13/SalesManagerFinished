@@ -208,6 +208,41 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
+        public bool UpdateOrder(Order order)
+        {
+            try
+            {
+                using(var context  = new MyDbContext(_path))
+                {
+                    var existingOrder = context.Orders.FirstOrDefault(o => o.OrderID == order.OrderID);
+                       
+                    if (existingOrder == null) 
+                    {
+                        return false;
+                    }
+
+                    existingOrder.CustomerId = order.CustomerId;
+                    existingOrder.ProductId = order.ProductId;
+                    existingOrder.Total = order.Total;
+                    existingOrder.Date = order.Date;
+                    existingOrder.Netto = order.Netto;
+                    existingOrder.Amount = order.Amount;
+
+                    context.SaveChanges();
+
+
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                System.Diagnostics.Debug.WriteLine(ex.InnerException.Message);
+                return false;
+            }
+        }
+
         public bool UpdateProduct(Product product)
         {
             try
