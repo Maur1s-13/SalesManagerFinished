@@ -16,13 +16,14 @@ using System.Drawing;
 
 namespace SalesManagerNew.Core.ViewModels
 {
-    public partial class AddCustomerViewModel(IRepository repository, IAlertService alertService) : ObservableObject
+    public partial class AddCustomerViewModel(IRepository repository, IAlertService alertService, ISound soundservice) : ObservableObject
     {
 
         
 
         IRepository _repository = repository;
         IAlertService _alertService = alertService;
+        ISound _soundService = soundservice;
 
         [ObservableProperty]
         public string _firstname;
@@ -68,11 +69,13 @@ namespace SalesManagerNew.Core.ViewModels
 
                 _alertService.ShowAlert("Erfolg!",
                     "Der Kunde konnte hinzugefügt werden!");
+                _soundService.PlayAudioSucess();
             }
             catch (Exception ex)
             {
                 _alertService.ShowAlert("Fehler!",
                     "Es gab ein Problem bei hinzufügen des Kunden!");
+                _soundService.PlayAudioFail();
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 throw;
             }
