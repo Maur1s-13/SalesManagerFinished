@@ -12,6 +12,6 @@ namespace SalesManagerNew.Lib.Interfaces
 
         public  void PlayAudioFail();
 
-       
+        public bool MuteSound(bool mute);
     }
 }

@@ -18,7 +18,23 @@ namespace SalesManagerNew.Core.ViewModels
 
         ISound _soundService = soundService;
 
-        
+        [ObservableProperty]
+        public bool mute = false;
+
+        [RelayCommand]
+        public void MuteSound()
+        {
+            if (Mute == false)
+            {
+                Mute = true;
+                _soundService.MuteSound(Mute);
+            }
+            else
+            {
+                Mute = false;
+                _soundService.MuteSound(Mute);
+            }
+        }
         
     }
 }

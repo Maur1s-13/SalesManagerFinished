@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SalesManagerNew.App.MainPage"
-             
-             
+             xmlns:viewmodels="clr-namespace:SalesManagerNew.Core.ViewModels;assembly=SalesManagerNew.Core"
+             x:DataType="viewmodels:MainViewModel"
              
              >
 
@@ -19,6 +19,8 @@
              FontAttributes="Bold"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center"/>
+
+            <Button Command="{Binding MuteSoundCommand}" Text="Mute Sound"/>
 
         </VerticalStackLayout>
 
