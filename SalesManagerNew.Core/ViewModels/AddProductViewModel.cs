@@ -14,12 +14,14 @@ using System.Threading.Tasks;
 
 namespace SalesManagerNew.Core.ViewModels
 {
-    public partial class AddProductViewModel (IRepository repository, IAlertService alertservice) : ObservableObject, INotifyPropertyChanged
+    public partial class AddProductViewModel (IRepository repository, IAlertService alertservice, ISound soundService) : ObservableObject, INotifyPropertyChanged
     {
 
         IRepository _repository = repository;
 
         IAlertService _alertservice = alertservice;
+
+        ISound _soundService = soundService;
 
         [ObservableProperty]
         public string productName;
@@ -59,6 +61,7 @@ namespace SalesManagerNew.Core.ViewModels
 
                 _alertservice.ShowAlert("Erfolg!",
                    "Das Produkt ist hinzugefügt worden!");
+                _soundService.PlayAudioSucess();
             }
             catch (Exception ex)
             {
@@ -66,6 +69,7 @@ namespace SalesManagerNew.Core.ViewModels
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 _alertservice.ShowAlert("Fehler!",
                     "Beim Hinzufügen des Produktes ist ein Fehler aufgetreten!");
+                _soundService.PlayAudioFail();
             }
         }
 
