@@ -16,11 +16,13 @@ using System.Windows.Input;
 
 namespace SalesManagerNew.Core.ViewModels
 {
-    public partial class LoginViewModel (IRepository repository, IAlertService alertService) : ObservableObject
+    public partial class LoginViewModel (IRepository repository, IAlertService alertService, ISound soundService) : ObservableObject
     {
         IRepository _repository = repository;
 
         IAlertService _alertservice = alertService;
+
+        ISound _soundService = soundService;
 
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Customer> _customers = [];
@@ -107,12 +109,14 @@ namespace SalesManagerNew.Core.ViewModels
         {
             if (Entrypassword == _password)
             {
+                _soundService.PlayAudioSucess();
                 Schluessel = 0;
                 this.Entrypassword = "";
                 
             }
             else
             {
+                _soundService.PlayAudioFail();
                 _alertservice.ShowAlert("Fehler!",
                     "Falsches Passwort!");
             }
@@ -148,11 +152,13 @@ namespace SalesManagerNew.Core.ViewModels
                 _alertservice.ShowAlert("Erfolg!",
                     "Der Kunde wurde gelöscht!");
                 this.Customers.Remove(SelectedCustomer);
+                _soundService.PlayAudioSucess();
             }
             else
             {
                 _alertservice.ShowAlert("Fehler",
                     "Der Kunde konnte nicht gelöscht werden");
+                _soundService.PlayAudioFail();
             }
         }
 
@@ -165,11 +171,13 @@ namespace SalesManagerNew.Core.ViewModels
                 _alertservice.ShowAlert("Erfolg!",
                     "Die Bestellung wurde gelöscht");
                 this.Orders.Remove(SelectedOrder);
+                _soundService.PlayAudioSucess();
             }
             else
             {
                 _alertservice.ShowAlert("Fehler",
                     "Die Bestellung konnte nicht gelöscht werden");
+                _soundService.PlayAudioFail();
             }
         }
 
@@ -182,11 +190,13 @@ namespace SalesManagerNew.Core.ViewModels
                 _alertservice.ShowAlert("Erfolg!",
                     "Das Produkt wurde gelöscht!");
                 this.Products.Remove(SelectedProduct);
+                _soundService.PlayAudioSucess();
             }
             else
             {
                 _alertservice.ShowAlert("Fehler",
                     "Das Produkt konnte nicht gelöscht werden");
+                _soundService.PlayAudioFail();
             }
         }
 
@@ -206,11 +216,13 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Customers[pos] = customer;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Kunde wurde bearbeitet");
+                    _soundService.PlayAudioSucess();
                     }
                     else
                     {
                         _alertservice.ShowAlert("Fehler",
                             "Der Kunde konnte nicht bearbeitet werden");
+                    _soundService.PlayAudioFail();
                     }
                 }
             
@@ -232,11 +244,13 @@ namespace SalesManagerNew.Core.ViewModels
                     this.Orders[pos] = order;
                     _alertservice.ShowAlert("Erfolg",
                         "Die Bestellung wurde bearbeitet");
+                    _soundService.PlayAudioSucess();
                 }
                 else
                 {
                     _alertservice.ShowAlert("Fehler",
                         "Die Bestellung konnte nicht bearbeitet werden");
+                    _soundService.PlayAudioFail();
                 }
             }
         }
@@ -258,11 +272,13 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Products[pos] = product;
                         _alertservice.ShowAlert("Erfolg",
                             "Das Produkt konnte bearbeitet werden");
+                    _soundService.PlayAudioSucess();
                     }
                     else
                     {
                         _alertservice.ShowAlert("Fehler",
                             "Das Produkt konnte nicht bearbeitet werden");
+                    _soundService.PlayAudioFail();
                     }
                 }
             
@@ -286,11 +302,13 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Customers[pos] = customer;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
+                    _soundService.PlayAudioSucess();
                     }
                     else
                     {
                         _alertservice.ShowAlert("Fehler",
                             "Der Status konnte nicht verändert werden");
+                    _soundService.PlayAudioFail();
                     }
                 }
             
@@ -312,11 +330,13 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Products[pos] = product;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
+                    _soundService.PlayAudioSucess();
                     }
                     else
                     {
                         _alertservice.ShowAlert("Fehler",
                             "Der Status konnte nicht verändert werden");
+                    _soundService.PlayAudioFail();
                     }
                 }
 
