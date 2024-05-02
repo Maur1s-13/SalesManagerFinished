@@ -101,6 +101,24 @@ namespace SalesManagerNew.Core.ViewModels
                         "Die Bestellung konnnte Erfolgreich hinzugefügt werden");
                     _soundService.PlayAudioSucess();
                 }
+                else if (SelectedCustomer == null && SelectedProduct != null)
+                {
+                    _alertservice.ShowAlert("Fehler!",
+                        "Sie müssen bitte einen Kunden auswählen!");
+                    _soundService.PlayAudioFail();
+                }
+                else if (SelectedCustomer != null && SelectedProduct == null)
+                {
+                    _alertservice.ShowAlert("Fehler!",
+                        "Sie müssen bitte ein Produkt auswählen");
+                    _soundService.PlayAudioFail();
+                }
+                else
+                {
+                    _alertservice.ShowAlert("Fehler",
+                        "Fehler bei der Hinzufügung der Bestellung");
+                    _soundService.PlayAudioFail();
+                }
             }
             catch (Exception ex)
             {
@@ -108,6 +126,7 @@ namespace SalesManagerNew.Core.ViewModels
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 _alertservice.ShowAlert("Fehler!",
                     "Beim Hinzufügen der Bestellung ist ein Fehler aufgetreten!");
+                _soundService.PlayAudioFail();
             }
 
         }
