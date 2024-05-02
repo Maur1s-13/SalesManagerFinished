@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Plugin.Maui.Audio" Version="2.1.0" />
     <PackageReference Include="Syncfusion.Maui.Picker" Version="25.1.41" />
   </ItemGroup>
 

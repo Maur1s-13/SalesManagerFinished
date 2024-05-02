@@ -19,11 +19,12 @@ using System.Runtime.CompilerServices;
 
 namespace SalesManagerNew.Core.ViewModels
 {
-    public partial class AddOrderViewModel(IRepository repository, IAlertService alertService) : ObservableObject
+    public partial class AddOrderViewModel(IRepository repository, IAlertService alertService, ISound soundService) : ObservableObject
     {
 
         IRepository _repository = repository;
         IAlertService _alertservice = alertService;
+        ISound _soundService = soundService;
 
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Customer> _customers = [];
@@ -98,6 +99,7 @@ namespace SalesManagerNew.Core.ViewModels
                      _repository.AddProductToCustomer(this.SelectedCustomer.CustomerId, this.SelectedProduct.ProductId, this.Date, this.Amount, this.Total, this.Netto);
                     _alertservice.ShowAlert("Erfolg",
                         "Die Bestellung konnnte Erfolgreich hinzugefügt werden");
+                    _soundService.PlayAudioSucess();
                 }
             }
             catch (Exception ex)

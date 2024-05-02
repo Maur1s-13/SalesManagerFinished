@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Maui;
+﻿
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Plugin.Maui.Audio;
 using SalesManagerNew.App.Pages;
 using SalesManagerNew.App.Services;
 using SalesManagerNew.Core.Services;
@@ -20,6 +22,7 @@ namespace SalesManagerNew.App
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
                 .ConfigureSyncfusionCore()
+                
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -36,6 +39,8 @@ namespace SalesManagerNew.App
             System.Diagnostics.Debug.WriteLine(path);
             //for commit
             builder.Services.AddSingleton<IRepository>(rep => new SqLiteRepository(fullpath));
+            builder.Services.AddSingleton<ISound>(new AudioViewModel(AudioManager.Current));
+            
 
 #if DEBUG
             builder.Services.AddSingleton<MainPage>();
@@ -46,6 +51,8 @@ namespace SalesManagerNew.App
 
             builder.Services.AddSingleton<AddCustomerViewModel>();
             builder.Services.AddSingleton<AddCustomer>();
+
+            
 
             builder.Services.AddSingleton<AddOrder>();
             builder.Services.AddSingleton<AddOrderViewModel>();
@@ -60,6 +67,8 @@ namespace SalesManagerNew.App
             builder.Services.AddSingleton<ReportViewModel>();
 
             builder.Services.AddSingleton<IAlertService, AlertService>();
+
+            
 
             builder.Logging.AddDebug();
 #endif
