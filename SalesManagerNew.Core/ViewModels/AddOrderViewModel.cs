@@ -35,15 +35,11 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         ObservableCollection<SalesManagerNew.Lib.Models.Order> _orders = [];
 
-
-
         [ObservableProperty]
         Lib.Models.Customer _selectedCustomer = null;
 
         [ObservableProperty]
         Lib.Models.Product _selectedProduct = null;
-
-
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddOrderCommand))]
@@ -176,6 +172,7 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Customers[pos] = customer;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Kunde wurde bearbeitet");
+                        _soundService.PlayAudioSucess();
                     }
                     else
                     {
@@ -190,6 +187,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 _alertservice.ShowAlert("Fehler!",
                     "Dieser Kunde ist schreibgeschützt!");
+                _soundService.PlayAudioFail();
             }
         }
 
@@ -211,6 +209,7 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Products[pos] = product;
                         _alertservice.ShowAlert("Erfolg",
                             "Das Produkt konnte bearbeitet werden");
+                        _soundService.PlayAudioSucess();
                     }
                     else
                     {
@@ -223,6 +222,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 _alertservice.ShowAlert("Fehler!",
                     "Dieses Produkt ist schreibgeschützt!");
+                _soundService.PlayAudioFail();
             }
         }
 
@@ -243,11 +243,13 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Customers[pos] = customer;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
+                        _soundService.PlayAudioSucess();
                     }
                     else
                     {
                         _alertservice.ShowAlert("Fehler",
                             "Der Status konnte nicht verändert werden");
+                        _soundService.PlayAudioFail();
                     }
                 }
             }
@@ -255,6 +257,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 _alertservice.ShowAlert("Fehler",
                     "Sie haben keine Berechtigung den Schreibschutz zu entfernen!");
+                _soundService.PlayAudioFail();
             }
    
         }
@@ -275,11 +278,13 @@ namespace SalesManagerNew.Core.ViewModels
                         this.Products[pos] = product;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
+                        _soundService.PlayAudioSucess();
                     }
                     else
                     {
                         _alertservice.ShowAlert("Fehler",
                             "Der Status konnte nicht verändert werden");
+                        _soundService.PlayAudioFail();
                     }
                 }
             }
@@ -287,6 +292,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 _alertservice.ShowAlert("Fehler",
                     "Sie haben keine Berechtigung den Schreibschutz zu entfernen!");
+                _soundService.PlayAudioFail();
             }
 
 
