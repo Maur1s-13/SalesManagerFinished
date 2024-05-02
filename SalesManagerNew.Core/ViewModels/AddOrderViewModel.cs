@@ -68,6 +68,8 @@ namespace SalesManagerNew.Core.ViewModels
 
         public bool CanAdd => this.Amount > 0;
 
+
+
         [RelayCommand(CanExecute = nameof(CanAdd))]
         public void AddOrder()
         {

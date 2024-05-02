@@ -13,23 +13,47 @@ namespace SalesManagerNew.App.Services
     {
         readonly IAudioManager audioManager;
 
+        public bool Muted = false;
+
         public AudioViewModel(IAudioManager audioManager)
         {
             this.audioManager = audioManager;
+            
+
         }
 
         public async void PlayAudioSucess()
         {
-            var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucess.wav"));
+            if (Muted == false)
+            {
+                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucess.wav"));
 
-            audioPlayer.Play();
+                audioPlayer.Volume = 1.5;
+
+                audioPlayer.Play();
+            }
+            else if (Muted = true)
+            {
+
+            }
+
+           
         }
 
         public async void PlayAudioFail()
         {
-            var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("fail.wav"));
+            if (Muted == false)
+            {
+                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("fail.wav"));
 
-            audioPlayer.Play();
+                audioPlayer.Play();
+            }
+            else if (Muted == true)
+            {
+
+            }
+
+            
         }
 
         

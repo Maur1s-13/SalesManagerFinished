@@ -11,5 +11,7 @@ namespace SalesManagerNew.Lib.Interfaces
         public void PlayAudioSucess();
 
         public  void PlayAudioFail();
+
+       
     }
 }

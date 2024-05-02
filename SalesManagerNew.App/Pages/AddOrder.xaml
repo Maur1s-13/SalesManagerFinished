@@ -204,6 +204,7 @@
                 </VerticalStackLayout>
 
                 <Button  Command="{Binding ChangeProductCommand}" BackgroundColor="Orange" Grid.Row="2" Grid.Column="1" Text="Produkt bearbeiten"/>
+                
 
             </Grid>
 
