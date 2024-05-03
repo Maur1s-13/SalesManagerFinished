@@ -7,57 +7,64 @@ using System.Threading.Tasks;
 using SalesManagerNew.Lib.Interfaces;
 using System.Xml.Serialization;
 
+
 namespace SalesManagerNew.App.Services
 {
     public class AudioViewModel : ISound
     {
         readonly IAudioManager audioManager;
 
+        private IAudioPlayer currentAudioPlayer;
+
         public bool Mute;
-
-
-        
 
         public AudioViewModel(IAudioManager audioManager)
         {
             this.audioManager = audioManager;
+            
         }
 
 
         public async void PlayAudioSucess()
         {
 
-            if (Mute == false)
+            if ( Mute == false)
             {
                 var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucess.wav"));
 
                 audioPlayer.Volume = 1.5;
 
-                audioPlayer.Play();
-            }
-            else
-            {
+                currentAudioPlayer = audioPlayer;
 
+                currentAudioPlayer.Play();
+            }
+            else if (Mute == true)
+            {
+                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucess.wav"));
+
+                audioPlayer.Volume = 0;
+
+                currentAudioPlayer = audioPlayer;
+
+                currentAudioPlayer.Play();
             }
             
-                
-
-           
         }
 
-        public bool MuteSound(bool mute)
+        public async void MuteSound(bool mute)
         {
-            Mute = mute;
+            Mute = mute; // Update the Mute property
 
-            if (Mute == true)
+            // Adjust the volume of the audio player if it's playing
+            if (mute && currentAudioPlayer != null)
             {
-                Mute = false;
-                return Mute;
+                // Set volume to 0 to mute
+                currentAudioPlayer.Volume = 0;
             }
-            else
+            else if (!mute && currentAudioPlayer != null)
             {
-                Mute = true;
-                return Mute;
+                // Restore original volume
+                currentAudioPlayer.Volume = 1.5; // Or whatever the original volume was
             }
         }
 
@@ -68,12 +75,22 @@ namespace SalesManagerNew.App.Services
             {
                 var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("fail.wav"));
 
-                audioPlayer.Play();
+                audioPlayer.Volume = 1.5;
+
+                currentAudioPlayer = audioPlayer;
+
+                currentAudioPlayer.Play();
 
             }
-            else
+            else if (Mute == true)
             {
+                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("fail.wav"));
 
+                audioPlayer.Volume = 0;
+
+                currentAudioPlayer = audioPlayer;
+
+                currentAudioPlayer.Play();
             }
                 
           

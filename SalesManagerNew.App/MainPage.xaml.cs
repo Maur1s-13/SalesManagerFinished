@@ -7,13 +7,13 @@ namespace SalesManagerNew.App
     {
        
 
-        public MainPage()
+        public MainPage(MainViewModel vw)
         {
             InitializeComponent();
-            this.BindingContext = this;
+            this.BindingContext = vw;
         }
 
-        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
+        
 
 
     }
