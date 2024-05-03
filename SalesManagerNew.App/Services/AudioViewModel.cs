@@ -30,7 +30,7 @@ namespace SalesManagerNew.App.Services
 
             if ( Mute == false)
             {
-                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucess.wav"));
+                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucessfull.mp3"));
 
                 audioPlayer.Volume = 1.5;
 
@@ -40,31 +40,25 @@ namespace SalesManagerNew.App.Services
             }
             else if (Mute == true)
             {
-                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("sucess.wav"));
-
-                audioPlayer.Volume = 0;
-
-                currentAudioPlayer = audioPlayer;
-
-                currentAudioPlayer.Play();
+                
             }
             
         }
 
         public async void MuteSound(bool mute)
         {
-            Mute = mute; // Update the Mute property
+            Mute = mute; 
 
-            // Adjust the volume of the audio player if it's playing
+           
             if (mute && currentAudioPlayer != null)
             {
-                // Set volume to 0 to mute
+                
                 currentAudioPlayer.Volume = 0;
             }
             else if (!mute && currentAudioPlayer != null)
             {
-                // Restore original volume
-                currentAudioPlayer.Volume = 1.5; // Or whatever the original volume was
+                
+                currentAudioPlayer.Volume = 1.5; 
             }
         }
 
@@ -84,13 +78,7 @@ namespace SalesManagerNew.App.Services
             }
             else if (Mute == true)
             {
-                var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("fail.wav"));
-
-                audioPlayer.Volume = 0;
-
-                currentAudioPlayer = audioPlayer;
-
-                currentAudioPlayer.Play();
+                
             }
                 
           

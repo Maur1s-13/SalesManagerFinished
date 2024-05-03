@@ -68,6 +68,8 @@
 	  <None Remove="Resources\Images\keyempty.svg" />
 	  <None Remove="Resources\Images\login.svg" />
 	  <None Remove="Resources\Images\logout.svg" />
+	  <None Remove="Resources\Images\soundoff.svg" />
+	  <None Remove="Resources\Images\soundon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

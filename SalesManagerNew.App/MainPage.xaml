@@ -4,8 +4,16 @@
              x:Class="SalesManagerNew.App.MainPage"
              xmlns:viewmodels="clr-namespace:SalesManagerNew.Core.ViewModels;assembly=SalesManagerNew.Core"
              x:DataType="viewmodels:MainViewModel"
-             
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
 
     <Grid RowDefinitions="*, 20" ColumnDefinitions="*, 20" HorizontalOptions="Center">
 
@@ -20,7 +28,38 @@
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center"/>
 
-            <Button Command="{Binding MuteSoundCommand}" Text="Mute Sound"/>
+            <Image Grid.Column="0" VerticalOptions="Center"
+            Source="soundoff.png"
+            IsVisible="{Binding Mute}"
+            HeightRequest="40"
+            HorizontalOptions="Center">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={
+                    RelativeSource AncestorType={x:Type viewmodels:MainViewModel
+                    }
+                    }, Path=MuteSoundCommand}"
+                                    CommandParameter="{Binding .}"/>
+
+                </Image.GestureRecognizers>
+
+            </Image>
+
+            <Image Grid.Column="3" VerticalOptions="Center"
+            Source="soundon.png"
+            IsVisible="{Binding Mute, Converter={StaticResource InvertedBoolConverter}}"
+       HeightRequest="40"
+       HorizontalOptions="Center">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={
+            RelativeSource AncestorType={x:Type viewmodels:MainViewModel
+            }
+            }, Path=MuteSoundCommand}"
+                                    CommandParameter="{Binding .}"/>
+                </Image.GestureRecognizers>
+
+            </Image>
 
         </VerticalStackLayout>
 

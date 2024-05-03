@@ -31,8 +31,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 Mute = true;
                 _soundService.MuteSound(Mute);
-                _alertService.ShowAlert("Erfolg",
-                    "Der Sound ist jetzt leise");
+                
             }
             else
             {
