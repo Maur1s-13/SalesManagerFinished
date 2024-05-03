@@ -41,6 +41,10 @@ namespace SalesManagerNew.Core.ViewModels
         [ObservableProperty]
         Lib.Models.Product _selectedProduct = null;
 
+
+        
+        
+
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddOrderCommand))]
         public int _amount = 0;

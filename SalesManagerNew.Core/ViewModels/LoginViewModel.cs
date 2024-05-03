@@ -140,6 +140,7 @@ namespace SalesManagerNew.Core.ViewModels
             Schluessel = null;
             this.SelectedCustomer = null;
             this.SelectedProduct = null;
+            this.SelectedOrder = null;
             ShowPassword = null;
         }
 
