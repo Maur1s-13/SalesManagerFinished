@@ -158,7 +158,7 @@ namespace SalesManagerNew.Core.ViewModels
             else
             {
                 _alertservice.ShowAlert("Fehler",
-                    "Der Kunde konnte nicht gelöscht werden");
+                    "Der Kunde konnte nicht gelöscht werden, da keiner ausgewählt ist");
                 _soundService.PlayAudioFail();
             }
         }
@@ -177,7 +177,7 @@ namespace SalesManagerNew.Core.ViewModels
             else
             {
                 _alertservice.ShowAlert("Fehler",
-                    "Die Bestellung konnte nicht gelöscht werden");
+                    "Die Bestellung konnte nicht gelöscht werden, da keine ausgewählt ist");
                 _soundService.PlayAudioFail();
             }
         }
@@ -196,7 +196,7 @@ namespace SalesManagerNew.Core.ViewModels
             else
             {
                 _alertservice.ShowAlert("Fehler",
-                    "Das Produkt konnte nicht gelöscht werden");
+                    "Das Produkt konnte nicht gelöscht werden, da keines ausgewählt ist");
                 _soundService.PlayAudioFail();
             }
         }
@@ -206,17 +206,28 @@ namespace SalesManagerNew.Core.ViewModels
         {
             customer = SelectedCustomer;
 
-                 _repository.UpdateCustomer(customer);
-
-            this.Customers.Clear();
-            foreach (var item in _repository.GetAllCustomers())
+            if (customer != null)
             {
-                Customers.Add(item);
+                _repository.UpdateCustomer(customer);
+
+                this.Customers.Clear();
+                foreach (var item in _repository.GetAllCustomers())
+                {
+                    Customers.Add(item);
+                }
+
+                _alertservice.ShowAlert("Erfolg",
+                    "Der Kunde wurde bearbeitet");
+                _soundService.PlayAudioSucess();
+            }
+            else
+            {
+                _alertservice.ShowAlert("Fehler!",
+                    "Sie müssen einen Kunden auswählen!");
+                _soundService.PlayAudioFail();
             }
 
-                        _alertservice.ShowAlert("Erfolg",
-                            "Der Kunde wurde bearbeitet");
-                    _soundService.PlayAudioSucess();
+                 
                     
                 
             
@@ -227,18 +238,29 @@ namespace SalesManagerNew.Core.ViewModels
         {
             order = SelectedOrder;
 
-             _repository.UpdateOrder(order);    
-
-            this.Orders.Clear();    
-            foreach (var item in _repository.GetAllOrders())
+            if (order != null)
             {
-                Orders.Add(item);
+                _repository.UpdateOrder(order);
+
+                this.Orders.Clear();
+                foreach (var item in _repository.GetAllOrders())
+                {
+                    Orders.Add(item);
+                }
+
+
+                _alertservice.ShowAlert("Erfolg",
+                    "Die Bestellung wurde bearbeitet");
+                _soundService.PlayAudioSucess();
             }
-            
-                    
-                    _alertservice.ShowAlert("Erfolg",
-                        "Die Bestellung wurde bearbeitet");
-                    _soundService.PlayAudioSucess();
+            else
+            {
+                _alertservice.ShowAlert("Fehler!",
+                    "Sie müssen eine Bestellung auswählen!");
+                _soundService.PlayAudioFail();
+            }
+
+             
                 
             
         }
@@ -248,24 +270,30 @@ namespace SalesManagerNew.Core.ViewModels
         {
                 product = SelectedProduct;
 
-            
-                 _repository.UpdateProduct(product);
-
-            this.Products.Clear();
-
-            foreach (var item in _repository.GetAllProducts())
+            if (product != null)
             {
-                Products.Add(item);
+                _repository.UpdateProduct(product);
+
+                this.Products.Clear();
+
+                foreach (var item in _repository.GetAllProducts())
+                {
+                    Products.Add(item);
+                }
+
+
+                _alertservice.ShowAlert("Erfolg",
+                    "Das Produkt konnte bearbeitet werden");
+                _soundService.PlayAudioSucess();
+            }
+            else
+            {
+                _alertservice.ShowAlert("Fehler!",
+                    "Sie müssen ein Produkt auswählen!");
+                _soundService.PlayAudioFail();
             }
 
-                
-                        _alertservice.ShowAlert("Erfolg",
-                            "Das Produkt konnte bearbeitet werden");
-                    _soundService.PlayAudioSucess();
-                   
-                
-            
-            
+           
         }
 
 
@@ -299,8 +327,8 @@ namespace SalesManagerNew.Core.ViewModels
         public void ToggleFavoriteProduct(Product product)
         {
             
-                product.Protection = !product.Protection;
-                _repository.UpdateProduct(product);
+           product.Protection = !product.Protection;
+           _repository.UpdateProduct(product);
 
             _repository.UpdateProduct(product);
 
