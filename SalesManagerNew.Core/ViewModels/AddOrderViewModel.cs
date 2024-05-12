@@ -167,7 +167,7 @@ namespace SalesManagerNew.Core.ViewModels
             {
                 
                 
-               var result =  _repository.UpdateCustomer(customer);
+                 _repository.UpdateCustomer(customer);
 
                 this.Customers.Clear();
 
@@ -195,25 +195,19 @@ namespace SalesManagerNew.Core.ViewModels
 
             if (product.Protection == false)
             {
-                var result = _repository.UpdateProduct(product);
+                        _repository.UpdateProduct(product);
 
-                if (result)
+                this.Products.Clear();
+                foreach (var item in _repository.GetAllProducts())
                 {
-                    int pos = this.Products.IndexOf(product);
+                    Products.Add(item);
+                }
 
-                    if (pos != 1)
-                    {
-                        this.Products[pos] = product;
+                
                         _alertservice.ShowAlert("Erfolg",
                             "Das Produkt konnte bearbeitet werden");
-                        _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Das Produkt konnte nicht bearbeitet werden");
-                    }
-                }
+                        _soundService.PlayAudioSucess();                  
+                
             }
             else
             {
@@ -230,25 +224,21 @@ namespace SalesManagerNew.Core.ViewModels
             if (customer.Protection == false)
             {
                 customer.Protection = !customer.Protection;
-                var result = _repository.ApplyProtectionCustomer(customer);
-                if (result)
-                {
-                    int pos = this.Customers.IndexOf(customer);
 
-                    if (pos != 1)
-                    {
-                        this.Customers[pos] = customer;
+                _repository.UpdateCustomer(customer);
+
+                this.Customers.Clear();
+                foreach (var item in _repository.GetAllCustomers())
+                {
+                    Customers.Add(item);
+                }
+                
+                
                         _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
                         _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Der Status konnte nicht verändert werden");
-                        _soundService.PlayAudioFail();
-                    }
-                }
+                   
+                
             }
             else
             {
@@ -265,25 +255,18 @@ namespace SalesManagerNew.Core.ViewModels
             if (product.Protection == false)
             {
                 product.Protection = !product.Protection;
-                var result = _repository.UpdateProduct(product);
-                if (result)
+                 _repository.UpdateProduct(product);
+                
+                    this.Products.Clear();
+                foreach (var item in _repository.GetAllProducts())
                 {
-                    int pos = this.Products.IndexOf(product);
+                    Products.Add(item);
+                }
 
-                    if (pos != 1)
-                    {
-                        this.Products[pos] = product;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
                         _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Der Status konnte nicht verändert werden");
-                        _soundService.PlayAudioFail();
-                    }
-                }
+                    
             }
             else
             {

@@ -35,7 +35,7 @@ public interface IRepository
 
     public bool DeleteOrder(Order oder);
 
-    public bool ApplyProtectionCustomer(Customer customer);
+    
 
     public bool ApplyProtectionProduct(Product product);
 

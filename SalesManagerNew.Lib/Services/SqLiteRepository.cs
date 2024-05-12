@@ -136,34 +136,7 @@ namespace SalesManagerNew.Lib.Services
 
 
 
-        public bool ApplyProtectionCustomer(Customer customer)
-        {
-            try
-            {
-                using (var context = new MyDbContext(_path))
-                {
-                    var existingCustomer = context.Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
-
-                    if (existingCustomer == null)
-                    {
-                        return false;
-                    }
-
-                    existingCustomer.Protection = customer.Protection;
-
-
-                    context.SaveChanges();
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return false;
-            }
-        }
+        
 
         public bool ApplyProtectionProduct(Product product)
         {
@@ -211,6 +184,7 @@ namespace SalesManagerNew.Lib.Services
                     existingCustomer.PLZ = customer.PLZ;
                     existingCustomer.Ort = customer.Ort;
                     existingCustomer.Adress = customer.Adress;
+                    existingCustomer.Protection = customer.Protection;
 
                     context.SaveChanges();
                 }
@@ -244,6 +218,7 @@ namespace SalesManagerNew.Lib.Services
                     existingOrder.Date = order.Date;
                     existingOrder.Netto = order.Netto;
                     existingOrder.Amount = order.Amount;
+                    
 
                     context.SaveChanges();
 

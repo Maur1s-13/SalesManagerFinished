@@ -206,26 +206,19 @@ namespace SalesManagerNew.Core.ViewModels
         {
             customer = SelectedCustomer;
 
-                var result = _repository.UpdateCustomer(customer);
+                 _repository.UpdateCustomer(customer);
 
-                if (result)
-                {
-                    int pos = this.Customers.IndexOf(customer);
+            this.Customers.Clear();
+            foreach (var item in _repository.GetAllCustomers())
+            {
+                Customers.Add(item);
+            }
 
-                    if (pos != 1)
-                    {
-                        this.Customers[pos] = customer;
                         _alertservice.ShowAlert("Erfolg",
                             "Der Kunde wurde bearbeitet");
                     _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Der Kunde konnte nicht bearbeitet werden");
-                    _soundService.PlayAudioFail();
-                    }
-                }
+                    
+                
             
         }
 
@@ -234,26 +227,20 @@ namespace SalesManagerNew.Core.ViewModels
         {
             order = SelectedOrder;
 
-            var result = _repository.UpdateOrder(order);    
+             _repository.UpdateOrder(order);    
 
-            if (result)
+            this.Orders.Clear();    
+            foreach (var item in _repository.GetAllOrders())
             {
-                int pos = this.Orders.IndexOf(order);
-
-                if (pos != 1)
-                {
-                    this.Orders[pos] = order;
+                Orders.Add(item);
+            }
+            
+                    
                     _alertservice.ShowAlert("Erfolg",
                         "Die Bestellung wurde bearbeitet");
                     _soundService.PlayAudioSucess();
-                }
-                else
-                {
-                    _alertservice.ShowAlert("Fehler",
-                        "Die Bestellung konnte nicht bearbeitet werden");
-                    _soundService.PlayAudioFail();
-                }
-            }
+                
+            
         }
 
         [RelayCommand]
@@ -262,26 +249,21 @@ namespace SalesManagerNew.Core.ViewModels
                 product = SelectedProduct;
 
             
-                var result = _repository.UpdateProduct(product);
+                 _repository.UpdateProduct(product);
 
-                if (result)
-                {
-                    int pos = this.Products.IndexOf(product);
+            this.Products.Clear();
 
-                    if (pos != 1)
-                    {
-                        this.Products[pos] = product;
+            foreach (var item in _repository.GetAllProducts())
+            {
+                Products.Add(item);
+            }
+
+                
                         _alertservice.ShowAlert("Erfolg",
                             "Das Produkt konnte bearbeitet werden");
                     _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Das Produkt konnte nicht bearbeitet werden");
-                    _soundService.PlayAudioFail();
-                    }
-                }
+                   
+                
             
             
         }
@@ -293,25 +275,22 @@ namespace SalesManagerNew.Core.ViewModels
         {
             
                 customer.Protection = !customer.Protection;
-                var result = _repository.ApplyProtectionCustomer(customer);
-                if (result)
-                {
-                    int pos = this.Customers.IndexOf(customer);
+                 _repository.UpdateCustomer(customer);
 
-                    if (pos != 1)
-                    {
-                        this.Customers[pos] = customer;
-                        _alertservice.ShowAlert("Erfolg",
+
+            this.Customers.Clear();
+            foreach (var item in _repository.GetAllCustomers())
+            {
+                Customers.Add(item);
+            }
+
+            
+
+            _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
                     _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Der Status konnte nicht verändert werden");
-                    _soundService.PlayAudioFail();
-                    }
-                }
+                    
+                
             
 
         }
@@ -321,25 +300,21 @@ namespace SalesManagerNew.Core.ViewModels
         {
             
                 product.Protection = !product.Protection;
-                var result = _repository.UpdateProduct(product);
-                if (result)
-                {
-                    int pos = this.Products.IndexOf(product);
+                _repository.UpdateProduct(product);
 
-                    if (pos != 1)
-                    {
-                        this.Products[pos] = product;
-                        _alertservice.ShowAlert("Erfolg",
+            _repository.UpdateProduct(product);
+
+            this.Products.Clear();
+
+            foreach (var item in _repository.GetAllProducts())
+            {
+                Products.Add(item);
+            }
+
+            _alertservice.ShowAlert("Erfolg",
                             "Der Status wurde verändert");
                     _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Der Status konnte nicht verändert werden");
-                    _soundService.PlayAudioFail();
-                    }
-                }
+                   
 
         }
 
