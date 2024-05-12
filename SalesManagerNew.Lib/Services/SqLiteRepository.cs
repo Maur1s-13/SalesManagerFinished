@@ -133,37 +133,7 @@ namespace SalesManagerNew.Lib.Services
             }
         }
 
-
-
-
-        
-
-        public bool ApplyProtectionProduct(Product product)
-        {
-            try
-            {
-                using (var context = new MyDbContext(_path))
-                {
-                    var existingProduct = context.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
-
-                    if (existingProduct == null)
-                    {
-                        return false;
-                    }
-
-                    existingProduct.Protection = existingProduct.Protection;
-                    context.SaveChanges();
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return false;
-            }
-        }
+ 
 
         public bool UpdateCustomer(Customer customer)
         {

@@ -37,7 +37,7 @@ public interface IRepository
 
     
 
-    public bool ApplyProtectionProduct(Product product);
+   
 
     public bool UpdateProduct(Product product);
 
