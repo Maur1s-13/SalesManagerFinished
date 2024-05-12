@@ -169,25 +169,16 @@ namespace SalesManagerNew.Core.ViewModels
                 
                var result =  _repository.UpdateCustomer(customer);
 
-                if (result)
-                {
-                    int pos = this.Customers.IndexOf(customer);
+                this.Customers.Clear();
 
-                    if (pos != 1)
-                    {
-                        this.Customers[pos] = customer;
+                foreach (var item in _repository.GetAllCustomers())
+                {
+                    Customers.Add(item);
+                }
                         _alertservice.ShowAlert("Erfolg",
                             "Der Kunde wurde bearbeitet");
                         _soundService.PlayAudioSucess();
-                    }
-                    else
-                    {
-                        _alertservice.ShowAlert("Fehler",
-                            "Der Kunde konnte nicht bearbeitet werden");
-                    }
-                }
- 
-                 
+                  
             }
             else
             {

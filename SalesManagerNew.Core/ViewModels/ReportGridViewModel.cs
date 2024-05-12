@@ -51,7 +51,7 @@ namespace SalesManagerNew.Core.ViewModels
 
         }
 
-        private bool _isLoaded = false;
+        
 
         [RelayCommand]
         void LoadData()
