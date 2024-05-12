@@ -209,11 +209,13 @@
             </Grid>
 
 
-            <Button  BackgroundColor="Green" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddOrderCommand}" Text="Bestellung hinzufügen" />
+            <Button x:Name="button" BackgroundColor="Green" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding AddOrderCommand}" Text="Bestellung hinzufügen" />
 
-            
 
-            
+
+
+
+
 
 
             <Grid Grid.Row="5" Padding="10" Grid.Column="0"  IsVisible="{Binding SelectedCustomer, Converter={StaticResource IsNullConverter}}">

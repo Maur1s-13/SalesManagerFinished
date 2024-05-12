@@ -57,16 +57,16 @@ namespace SalesManagerNew.Core.ViewModels
         void LoadData()
 
         {
-            if (!_isLoaded)
-            {
+            this.Orders.Clear();
+           
                 var entries = _repository.GetAllOrders();
 
                 foreach (var entry in entries)
                 {
                     Orders.Add(entry);
                 }
-                _isLoaded = true;
-            }
+                
+            
 
         }
 
