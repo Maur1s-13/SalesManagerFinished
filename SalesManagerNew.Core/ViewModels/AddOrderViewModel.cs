@@ -159,15 +159,15 @@ namespace SalesManagerNew.Core.ViewModels
         
 
         [RelayCommand]
-        public void ChangeCustomer(Customer customer)
+        public void ChangeCustomer()
         {
-            customer = SelectedCustomer;
+            var customer = SelectedCustomer;
 
             if (customer.Protection == false)
             {
-                
-                
                  _repository.UpdateCustomer(customer);
+
+               
 
                 this.Customers.Clear();
 
@@ -175,6 +175,7 @@ namespace SalesManagerNew.Core.ViewModels
                 {
                     Customers.Add(item);
                 }
+
                         _alertservice.ShowAlert("Erfolg",
                             "Der Kunde wurde bearbeitet");
                         _soundService.PlayAudioSucess();
@@ -189,9 +190,9 @@ namespace SalesManagerNew.Core.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeProduct(Product product)
+        public void ChangeProduct()
         {
-            product = SelectedProduct;
+            var product = SelectedProduct;
 
             if (product.Protection == false)
             {

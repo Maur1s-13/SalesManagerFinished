@@ -202,9 +202,9 @@ namespace SalesManagerNew.Core.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeCustomer(Customer customer)
+        public void ChangeCustomer()
         {
-            customer = SelectedCustomer;
+           var customer = SelectedCustomer;
 
             if (customer != null)
             {
@@ -234,9 +234,9 @@ namespace SalesManagerNew.Core.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeOrder(Order order)
+        public void ChangeOrder()
         {
-            order = SelectedOrder;
+            var order = SelectedOrder;
 
             if (order != null)
             {
@@ -266,9 +266,9 @@ namespace SalesManagerNew.Core.ViewModels
         }
 
         [RelayCommand]
-        public void ChangeProduct(Product product)
+        public void ChangeProduct()
         {
-                product = SelectedProduct;
+               var product = SelectedProduct;
 
             if (product != null)
             {

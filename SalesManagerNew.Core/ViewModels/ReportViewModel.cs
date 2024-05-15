@@ -59,11 +59,11 @@ namespace SalesManagerNew.Core.ViewModels
         {
             this.Products.Clear();
            
-                var entries = _repository.GetAllProducts();
+                var products = _repository.GetAllProducts();
 
-                foreach (var entry in entries)
+                foreach (var product in products)
                 {
-                    Products.Add(entry);
+                    Products.Add(product);
                 }
                
             
